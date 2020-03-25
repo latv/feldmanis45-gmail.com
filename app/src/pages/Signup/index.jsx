@@ -19,7 +19,7 @@ const Signin = () => {
       setLoading(true);
       let response = await APIClient.request(
         '/api/auth/signup',
-        {username: values.username,email: values.email, password: values.password, rules : ["user"]},
+        {username: values.username,email: values.email, password: values.password, roles : ["user"]},
         'POST'
       );
       // jwt.saveToken(response.token, response.expiresIn);
