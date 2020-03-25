@@ -20,7 +20,7 @@ const Login = ({history}) => {
         {username: values.username, password: values.password},
         'POST'
       );
-      jwt.saveToken(response.token, response.expiresIn);
+      jwt.saveToken(response.accessToken, response.expiresIn);
       setLoading(false);
       history.replace('/');
     } catch (err) {

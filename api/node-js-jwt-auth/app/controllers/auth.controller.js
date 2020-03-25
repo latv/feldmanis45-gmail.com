@@ -25,13 +25,13 @@ exports.signup = (req, res) => {
           }
         }).then(roles => {
           user.setRoles(roles).then(() => {
-            res.send({ message: "User registered successfully!" });
+            res.send({ message: "User was registered successfully!" });
           });
         });
       } else {
         // user role = 1
         user.setRoles([1]).then(() => {
-          res.send({ message: "User registered successfully!" });
+          res.send({ message: "User was registered successfully!" });
         });
       }
     })
@@ -77,7 +77,7 @@ exports.signin = (req, res) => {
           username: user.username,
           email: user.email,
           roles: authorities,
-          token: token
+          accessToken: token
         });
       });
     })
@@ -85,20 +85,3 @@ exports.signin = (req, res) => {
       res.status(500).send({ message: err.message });
     });
 };
-
-// exports.profile = (req, res) => {
-//   User.findOne({
-//     where: {
-//       token : req.body.x-access-token
-//     }
-//   })
-//     .then(token => {
-//       if (!token) {
-//         return res.status(404).send({ message: "token Not found." });
-//       }
-
-
-//       var user = jwt.decode(token, config.secret);
-
-
-//         res.status(200).send({username: user}});
