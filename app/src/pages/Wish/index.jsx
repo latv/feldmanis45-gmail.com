@@ -11,9 +11,9 @@ const myBetsKey = "my-bets";
 const matchesKey = "matches";
 
 const Wish = () => {
-  const [matches, setMatches] = useState([]);
-  const [isBetModalVisible, setIsBetModalVisible] = useState(false);
-  const [selectedMatch, setSelectedMatch] = useState({});
+  const [wishes, setWishes] = useState([]);
+  // const [isBetModalVisible, setIsBetModalVisible] = useState(false);
+  // const [selectedMatch, setSelectedMatch] = useState({});
 
   useEffect(() => {
 
@@ -24,27 +24,52 @@ const Wish = () => {
 
   const getMatches = async () => {
     let response = await APIClient.request(
-      '/api/match/get-upcoming-matches',
+      '/api/test/get-wishes',
       {},
       'GET'
     );
 
     console.log(response);
 
-    setMatches(response);
+    setWishes(response);
   }
 
 
-  const tabChanged = (key) => {
+  const columns = [
+    {
+      title: 'isDreamsComesTrue',
+      dataIndex: 'isDreamsComesTrue',
+      render: (value) => {
+        if (value === false) { return 'false'; }
+        else { return 'true' }
+      }
 
-  }
+    },
+    {
+      title: 'Name',
+      dataIndex: 'idUsername',
+      key: 'idUsername',
+    },
+    {
+      title: 'wish',
+      dataIndex: 'wish',
+      key: 'wish',
+    },
 
- 
- 
+  ];
+
+
+
+
+
+
 
   return (
     <>
-      <h1>this is wishes</h1>
+      <div className= 'wish-table'>
+
+        <Table dataSource={wishes} columns={columns} />
+      </div>
     </>
   )
 }

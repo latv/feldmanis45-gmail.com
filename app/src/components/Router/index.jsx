@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Wish from 'pages/Wish';
 
 import Profile from 'pages/Profile';
-import Wallet from 'pages/Wallet';
+import WishRegister from 'pages/WishRegister';
 import PageNotFound from '../../pages/PageNotFound';
 import HistoryOfWallet from 'components/HistoryOfWallet';
 const Router = () => {
@@ -14,7 +14,7 @@ const Router = () => {
         
       </Route>
       <Route exact path="/profile" component={Profile} />
-      <Route exact path="/wallet" component={Wallet} />
+      <Route exact path="/wish-register" component={WishRegister} />
       <Route exact path="/get-wallet-actions" component={HistoryOfWallet} />
      
       <Route exact path="*" component={PageNotFound} />

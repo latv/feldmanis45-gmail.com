@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'components/Router';
 import { Layout, Row, Col, Spin, Menu, Dropdown } from 'antd';
-import { WalletOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import {HeartOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import APIClient from 'utils/apiClient';
 import numberFormatter from 'utils/numberFormatter';
 import AddMoneyModal from 'components/AddMoneyModal';
@@ -69,8 +69,8 @@ const DefaultLayout = () => {
             </NavLink>
             <div className="app-header-content">
               <div className="wallet-amount">
-                <NavLink to="/wallet">
-                  <WalletOutlined />
+                <NavLink to="/wish-register">
+                <HeartOutlined />
                 </NavLink>
                 <p>Your username: </p>
                 <Spin spinning={isLoading} className="amount-spinner">

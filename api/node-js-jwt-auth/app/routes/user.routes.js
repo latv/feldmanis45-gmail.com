@@ -12,7 +12,7 @@ module.exports = function(app) {
 
   app.get("/api/test/all",[authJwt.verifyToken], controller.allAccess);
 
-  app.get(
+  app.post(
     "/api/test/register-wish",
 
     controller.registerWish
