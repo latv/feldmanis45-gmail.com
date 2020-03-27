@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { Form, Row, Col, message } from 'antd';
-import { withRouter } from 'react-router-dom';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
+import { HeartOutlined} from '@ant-design/icons';
 import Button from 'components/Button';
-import { NavLink } from 'react-router-dom';
+
 import Input from 'components/Input';
 import APIClient from 'utils/apiClient';
-import jwt from 'utils/jwt';
+
 import './styles.scss';
 
 
@@ -58,7 +58,7 @@ const WishRegister = () => {
               },
             ]}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+            <Input prefix={<HeartOutlined className="site-form-item-icon" />} placeholder="Wish" />
           </Form.Item>
          
           <Form.Item>

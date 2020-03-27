@@ -4,11 +4,11 @@ import { Layout, Row, Col, Spin, Menu, Dropdown } from 'antd';
 import {HeartOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import APIClient from 'utils/apiClient';
 import numberFormatter from 'utils/numberFormatter';
-import AddMoneyModal from 'components/AddMoneyModal';
+
 import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './styles.scss';
-import TakeAmountModal from 'components/TakeAmountModal';
+
 const { Header, Content, Footer } = Layout;
 const xsWidth = 22;
 const mdWidth = 18;

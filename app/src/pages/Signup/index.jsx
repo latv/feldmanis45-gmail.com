@@ -7,13 +7,13 @@ import Input from 'components/Input';
 // import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import APIClient from 'utils/apiClient';
-import jwt from 'utils/jwt';
+
 import { NavLink } from 'react-router-dom';
 // import './styles.scss';
 
 const Signin = () => {
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+ 
   const onFinish = async (values) => {
     try {
       setLoading(true);
