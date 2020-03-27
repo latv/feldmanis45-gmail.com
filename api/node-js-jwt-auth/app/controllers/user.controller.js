@@ -64,7 +64,7 @@ exports.profile = (req, res) => {
 
 exports.getWishes = (req, res) => {
   const wishes = Wish.findAll().then(result => {
-    res.status(200).send(result);
+    res.status(200).send(result.reverse());
 
   });
   // console.log(wishes);

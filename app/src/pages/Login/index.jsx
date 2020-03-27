@@ -34,7 +34,7 @@ const Login = ({history}) => {
     <Row align="middle" justify="center" className="h-100" >
       <Col xs={22} sm={16} md={12} lg={8}>
         <div className="login-card">
-          <img src="betit-logo-dark.svg" alt="betit logo" className="betit-logo" height={25} />
+         
           <h3>Please Log-In to continue</h3>
           <Form
             name="normal_login"

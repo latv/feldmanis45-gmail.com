@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Tabs, Table } from 'antd';
+import { Tabs, Table ,Spin} from 'antd';
 import APIClient from 'utils/apiClient';
 import moment from 'moment';
 
-
+import { LoadingOutlined } from '@ant-design/icons';
 import './styles.scss';
 
 
 const Wish = () => {
   const [wishes, setWishes] = useState([]);
-  // const [isBetModalVisible, setIsBetModalVisible] = useState(false);
-  // const [selectedMatch, setSelectedMatch] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
 
@@ -29,6 +28,7 @@ const Wish = () => {
     console.log(response);
 
     setWishes(response);
+    setIsLoading(false);
   }
 
 
@@ -56,17 +56,20 @@ const Wish = () => {
   ];
 
 
-
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 
 
 
   return (
     <>
-      <div className= 'wish-table'>
+      <Spin
+        spinning={isLoading} indicator={antIcon}
+      >
+        <div className='wish-table'>
 
-        <Table dataSource={wishes} columns={columns} />
-      </div>
+          <Table dataSource={wishes} columns={columns} />
+        </div></Spin>
     </>
   )
 }

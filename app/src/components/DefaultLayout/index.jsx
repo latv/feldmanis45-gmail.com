@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'components/Router';
 import { Layout, Row, Col, Spin, Menu, Dropdown } from 'antd';
-import {HeartOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import {HeartOutlined, UserOutlined, LogoutOutlined, BgColorsOutlined } from '@ant-design/icons';
 import APIClient from 'utils/apiClient';
 import numberFormatter from 'utils/numberFormatter';
 
@@ -65,7 +65,7 @@ const DefaultLayout = () => {
         <Row justify="center" >
           <Col xs={xsWidth} md={mdWidth} lg={lgWidth}>
             <NavLink to="/">
-              <img src="betit-logo-light.svg" alt="betit logo" height={40} className="brand-logo" />
+              <HeartOutlined style={{ fontSize: '40px',padding : "10px", color: 'red' }}  className="brand-logo" />
             </NavLink>
             <div className="app-header-content">
               <div className="wallet-amount">
