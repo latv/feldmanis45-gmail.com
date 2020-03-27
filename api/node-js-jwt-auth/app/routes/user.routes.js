@@ -10,13 +10,21 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/test/all", controller.allAccess);
+  app.get("/api/test/all",[authJwt.verifyToken], controller.allAccess);
 
   app.get(
-    "/api/test/user",
-    [authJwt.verifyToken],
-    controller.userBoard
+    "/api/test/register-wish",
+
+    controller.registerWish
   );
+
+  app.get(
+    "/api/test/get-wishes",
+
+    controller.getWishes
+  );
+  
+
   app.get(
     "/api/test/profile",
     [authJwt.verifyToken],

@@ -90,7 +90,7 @@ const DefaultLayout = () => {
       <Content className="app-content">
         <Row justify="center" >
           <Col xs={xsWidth} md={mdWidth} lg={lgWidth}>
-            
+          <Router />
           </Col>
         </Row>
       </Content>
