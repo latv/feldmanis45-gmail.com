@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'components/Router';
-import { Layout, Row, Col, Spin, Menu, Dropdown } from 'antd';
+import { Layout, Row, Col, Spin, Menu } from 'antd';
 import { SearchOutlined, HeartOutlined, UserOutlined, LogoutOutlined, BgColorsOutlined } from '@ant-design/icons';
 import APIClient from 'utils/apiClient';
 import numberFormatter from 'utils/numberFormatter';
-import SearchForWish from 'components/SearchForWish'
+
 import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './styles.scss';
@@ -14,12 +14,17 @@ const xsWidth = 22;
 const mdWidth = 18;
 const lgWidth = 16;
 
+
+
+
+
+
 const DefaultLayout = () => {
-  const [wish, setWish] =useState(0);
+  const [wish, setWish] = useState(0);
   const [Profile, setProfile] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  
-  const [isSearchForWishModalOpen, setSearchForWish] = useState(false);
+
+
 
   // visible={isSearchForWishOpen}
   //       setIsSearchForWishModalOpen={setIsSearchForWishModalOpen}
@@ -61,16 +66,8 @@ const DefaultLayout = () => {
     document.location.reload(true);
   }
 
-  const menu = (
-    <Menu>
-      <Menu.Item key="0">
-        <div onClick={() => {
-           setSearchForWish(true)
-        }}>Search for wish</div>
-      </Menu.Item>
 
-    </Menu>
-  );
+
 
 
   return (
@@ -86,9 +83,9 @@ const DefaultLayout = () => {
             </NavLink>
             <div className="app-header-content">
               <div className="wallet-amount">
-                <Dropdown overlay={menu} trigger={['click']}>
+                <NavLink to="/search">
                   <SearchOutlined />
-                </Dropdown>
+                </NavLink>
                 <NavLink to="/wish-register">
                   <HeartOutlined />
                 </NavLink>
@@ -121,11 +118,7 @@ const DefaultLayout = () => {
           </Col>
         </Row>
       </Footer>
-      <SearchForWish
-        visible={isSearchForWishModalOpen}
-        setIsSearchForWishModalOpen={ setSearchForWish}
-        setSearchForWish={setProfile} doesn neede
-      />
+
     </Layout>
   )
 }

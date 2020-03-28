@@ -3,7 +3,7 @@ const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Wish = db.wish;
-
+const { Op } = require('sequelize');
 
 exports.allAccess = (req, res) => {
   // console.log("tokens, ",req.body.x-access-token)
@@ -17,7 +17,7 @@ exports.allAccess = (req, res) => {
       // token= JSON.parse(token);
 
       console.log(tokenUserName);
-      console.log("Token , ", token.id);
+      console.log("Token , ", token.id+'*');
 
       // token2  = JSON.stringify( token['id'] );
       res.status(200).send({ username: tokenUserName }
@@ -47,6 +47,21 @@ exports.registerWish = (req, res) => {
   res.status(200).send("Registered wish");
   
 });};
+exports.searchWish = (req, res) => {
+
+  // console.log();
+  let wishsearch = String(req.body.searchWish);
+
+  Wish.findAll({where :{ wish : {[Op.substring]: wishsearch}}}
+     
+    ).then(result => {
+     
+      res.status(200).send(result);} );
+
+  // res.status(200).send("Registered wish");
+  
+};
+
 
 exports.adminBoard = (req, res) => {
   res.status(200).send("Admin Content.");
