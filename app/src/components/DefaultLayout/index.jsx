@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'components/Router';
 import { Layout, Row, Col, Spin, Menu, Dropdown } from 'antd';
-import {HeartOutlined, UserOutlined, LogoutOutlined, BgColorsOutlined } from '@ant-design/icons';
+import { SearchOutlined, HeartOutlined, UserOutlined, LogoutOutlined, BgColorsOutlined } from '@ant-design/icons';
 import APIClient from 'utils/apiClient';
 import numberFormatter from 'utils/numberFormatter';
-
+import SearchForWish from 'components/SearchForWish'
 import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './styles.scss';
@@ -15,10 +15,15 @@ const mdWidth = 18;
 const lgWidth = 16;
 
 const DefaultLayout = () => {
+  const [wish, setWish] =useState(0);
   const [Profile, setProfile] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  
+  const [isSearchForWishModalOpen, setSearchForWish] = useState(false);
 
-
+  // visible={isSearchForWishOpen}
+  //       setIsSearchForWishModalOpen={setIsSearchForWishModalOpen}
+  //       setSearchForWish={setSearchForWish}
 
   useEffect(() => {
 
@@ -35,7 +40,7 @@ const DefaultLayout = () => {
     );
     console.log(response.username);
     setProfile(response.username);
-    
+
     setIsLoading(false);
   }
 
@@ -56,7 +61,16 @@ const DefaultLayout = () => {
     document.location.reload(true);
   }
 
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <div onClick={() => {
+           setSearchForWish(true)
+        }}>Search for wish</div>
+      </Menu.Item>
 
+    </Menu>
+  );
 
 
   return (
@@ -64,19 +78,25 @@ const DefaultLayout = () => {
       <Header className="app-header">
         <Row justify="center" >
           <Col xs={xsWidth} md={mdWidth} lg={lgWidth}>
+
+
+
             <NavLink to="/">
-              <HeartOutlined style={{ fontSize: '40px',padding : "10px", color: 'red' }}  className="brand-logo" />
+              <HeartOutlined style={{ fontSize: '40px', padding: "10px", color: 'red' }} className="brand-logo" />
             </NavLink>
             <div className="app-header-content">
               <div className="wallet-amount">
+                <Dropdown overlay={menu} trigger={['click']}>
+                  <SearchOutlined />
+                </Dropdown>
                 <NavLink to="/wish-register">
-                <HeartOutlined />
+                  <HeartOutlined />
                 </NavLink>
                 <p>Your username: </p>
                 <Spin spinning={isLoading} className="amount-spinner">
-      
-                    <p className="amount-with-currency">{Profile}</p>
-                 
+
+                  <p className="amount-with-currency">{Profile}</p>
+
                 </Spin>
               </div>
               <NavLink to="/wallet">
@@ -90,7 +110,7 @@ const DefaultLayout = () => {
       <Content className="app-content">
         <Row justify="center" >
           <Col xs={xsWidth} md={mdWidth} lg={lgWidth}>
-          <Router />
+            <Router />
           </Col>
         </Row>
       </Content>
@@ -101,7 +121,11 @@ const DefaultLayout = () => {
           </Col>
         </Row>
       </Footer>
-
+      <SearchForWish
+        visible={isSearchForWishModalOpen}
+        setIsSearchForWishModalOpen={ setSearchForWish}
+        setSearchForWish={setProfile} doesn neede
+      />
     </Layout>
   )
 }
