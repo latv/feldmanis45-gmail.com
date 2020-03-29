@@ -1,9 +1,10 @@
 var jwt = require("jsonwebtoken");
+const Sequelize = require("sequelize");
 const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Wish = db.wish;
-
+const Op = Sequelize.Op;
 
 exports.allAccess = (req, res) => {
   // console.log("tokens, ",req.body.x-access-token)
@@ -17,7 +18,7 @@ exports.allAccess = (req, res) => {
       // token= JSON.parse(token);
 
       console.log(tokenUserName);
-      console.log("Token , ", token.id);
+      console.log("Token , ", token.id + '*');
 
       // token2  = JSON.stringify( token['id'] );
       res.status(200).send({ username: tokenUserName }
@@ -40,13 +41,32 @@ exports.registerWish = (req, res) => {
   console.log("token ,", token);
   User.findOne({ where: { id: token.id } }).then(result => {
     let tokenUserName = result.username;
-  Wish.create({
-    idUsername: tokenUserName,
-    wish: req.body.wish
+    Wish.create({
+      idUsername: tokenUserName,
+      wish: req.body.wish
+    });
+    res.status(200).send("Registered wish");
+
   });
-  res.status(200).send("Registered wish");
-  
-});};
+};
+exports.searchWish = (req, res) => {
+
+  // console.log();
+ 
+  let wishsearch = req.query.searchWish;
+  console.log(wishsearch);
+
+  Wish.findAll({ where: { wish: { [Op.substring]: wishsearch } } }
+
+  ).then(result => {
+
+    res.status(200).send(result);
+  });
+
+  // res.status(200).send("Registered wish");
+
+};
+
 
 exports.adminBoard = (req, res) => {
   res.status(200).send("Admin Content.");
@@ -55,6 +75,8 @@ exports.adminBoard = (req, res) => {
 exports.moderatorBoard = (req, res) => {
   res.status(200).send("Moderator Content.");
 };
+
+
 
 
 

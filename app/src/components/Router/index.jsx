@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Wish from 'pages/Wish';
+import Search from 'pages/Search'
+
 
 import Profile from 'pages/Profile';
 import WishRegister from 'pages/WishRegister';
@@ -13,6 +15,7 @@ const Router = () => {
       <Route exact path="/" component={Wish}>
         
       </Route>
+      <Route exact path="/search" component={Search} />
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/wish-register" component={WishRegister} />
 
