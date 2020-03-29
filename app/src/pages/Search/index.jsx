@@ -9,15 +9,16 @@ const Search = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
     const [loading, setLoading] = useState(false);
+    const [wishSearch, setwishSearch] = useState('');
     const [wishes, setWishes] = useState([]);
     const onSearch = async (values) => {
         try {
+            console.log(values);
             setLoading(true);
             let response = await APIClient.request(
-                '/api/test/search-wishes',
+                '/api/test/search',
                 {
-                    searchWish:
-                        "engine" // String(values.search)
+                    searchWish: wishSearch// String(values.search)
                 },
                 'GET'
             );
@@ -37,7 +38,7 @@ const Search = () => {
             dataIndex: 'isDreamsComesTrue',
             render: (value) => {
                 if (value === false) { return 'false'; }
-                else { return 'true' }
+                else {return 'true'}
             }
 
         },
@@ -56,16 +57,22 @@ const Search = () => {
     return (
         <>
             <div className='search-input'>
-                < Input name='search' placeholder="search" prefix={<SearchOutlined onClick={onSearch} />}
+                < Input name='search' placeholder="search" 
+                
+                
+                onChange={(el) => {
+
+                    setwishSearch(el.target.value)
+                } } 
+
+
+                prefix={<SearchOutlined onClick={onSearch} />}
                     loading={loading} onPressEnter={onSearch}>
-
                 </Input></div>
-            <hr />
+            <hr/>
             <Spin
-                spinning={loading} indicator={antIcon}
-            >
+                spinning={loading} indicator={antIcon}>
                 <div className='wish-table'>
-
                     <Table dataSource={wishes} columns={columns} />
                 </div></Spin>
 

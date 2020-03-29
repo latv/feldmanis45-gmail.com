@@ -15,7 +15,7 @@ const Router = () => {
       <Route exact path="/" component={Wish}>
         
       </Route>
-      <Route exact path="/search" component={Search} />
+      <Route exact path="/find" component={Search} />
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/wish-register" component={WishRegister} />
 

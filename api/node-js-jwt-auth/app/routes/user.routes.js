@@ -18,7 +18,7 @@ module.exports = function(app) {
     controller.registerWish
   );
   app.get(
-    "/api/test/search-wishes",
+    "/api/test/search",
 
     controller.searchWish
   );

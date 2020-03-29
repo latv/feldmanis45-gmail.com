@@ -18,7 +18,7 @@ exports.allAccess = (req, res) => {
       // token= JSON.parse(token);
 
       console.log(tokenUserName);
-      console.log("Token , ", token.id+'*');
+      console.log("Token , ", token.id + '*');
 
       // token2  = JSON.stringify( token['id'] );
       res.status(200).send({ username: tokenUserName }
@@ -41,26 +41,30 @@ exports.registerWish = (req, res) => {
   console.log("token ,", token);
   User.findOne({ where: { id: token.id } }).then(result => {
     let tokenUserName = result.username;
-  Wish.create({
-    idUsername: tokenUserName,
-    wish: req.body.wish
+    Wish.create({
+      idUsername: tokenUserName,
+      wish: req.body.wish
+    });
+    res.status(200).send("Registered wish");
+
   });
-  res.status(200).send("Registered wish");
-  
-});};
+};
 exports.searchWish = (req, res) => {
 
   // console.log();
-  let wishsearch = String(req.body.searchWish);
+ 
+  let wishsearch = req.query.searchWish;
+  console.log(wishsearch);
 
-  Wish.findAll({where :{ wish : {[Op.substring]: wishsearch}}}
-     
-    ).then(result => {
-     
-      res.status(200).send(result);} );
+  Wish.findAll({ where: { wish: { [Op.substring]: wishsearch } } }
+
+  ).then(result => {
+
+    res.status(200).send(result);
+  });
 
   // res.status(200).send("Registered wish");
-  
+
 };
 
 
