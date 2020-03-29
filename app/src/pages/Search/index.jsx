@@ -7,7 +7,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 const Search = () => {
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-
+    const [loadingTable, setLoadingTable] = useState(false);
     const [loading, setLoading] = useState(false);
     const [wishSearch, setwishSearch] = useState('');
     const [wishes, setWishes] = useState([]);
@@ -15,6 +15,7 @@ const Search = () => {
         try {
             console.log(values);
             setLoading(true);
+            setLoadingTable(true);
             let response = await APIClient.request(
                 '/api/test/search',
                 {
@@ -54,6 +55,7 @@ const Search = () => {
         },
 
     ];
+var SearchTable = loadingTable ? <Table dataSource={wishes} columns={columns} /> : <h1></h1>;
     return (
         <>
             <div className='search-input'>
@@ -73,7 +75,7 @@ const Search = () => {
             <Spin
                 spinning={loading} indicator={antIcon}>
                 <div className='wish-table'>
-                    <Table dataSource={wishes} columns={columns} />
+                    {SearchTable} 
                 </div></Spin>
 
         </>
