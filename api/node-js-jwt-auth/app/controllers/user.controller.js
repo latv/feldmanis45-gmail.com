@@ -1,9 +1,10 @@
 var jwt = require("jsonwebtoken");
+const Sequelize = require("sequelize");
 const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Wish = db.wish;
-const { Op } = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.allAccess = (req, res) => {
   // console.log("tokens, ",req.body.x-access-token)
@@ -70,6 +71,8 @@ exports.adminBoard = (req, res) => {
 exports.moderatorBoard = (req, res) => {
   res.status(200).send("Moderator Content.");
 };
+
+
 
 
 
